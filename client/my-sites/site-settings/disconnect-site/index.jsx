@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { flowRight } from 'lodash';
 import { localize } from 'i18n-calypso';
+import page from 'page';
 /**
  * Internal dependencies
  */
@@ -17,8 +18,16 @@ import Main from 'components/main';
 import Placeholder from 'my-sites/site-settings/placeholder-disconnect';
 import redirectNonJetpack from 'my-sites/site-settings/redirect-non-jetpack';
 import SkipSurvey from './skip-survey';
+import ReturnPreviousPage from 'my-sites/site-settings/return-previous-page';
 
 class DisconnectSite extends Component {
+	// when complete, the flow will start from /settings/manage-connection
+	handleClick = () => {
+		const { siteSlug } = this.props;
+
+		page( '/settings/manage-connection/' + siteSlug );
+	};
+
 	render() {
 		const { site, translate } = this.props;
 
@@ -26,17 +35,22 @@ class DisconnectSite extends Component {
 			return <Placeholder />;
 		}
 		return (
-			<Main className="disconnect-site site-settings">
-				<DocumentHead title={ translate( 'Site Settings' ) } />
-				<FormattedHeader
-					headerText={ translate( 'Disconnect Site' ) }
-					subHeaderText={ translate(
-						'Tell us why you want to disconnect your site from WordPress.com.'
-					) }
-				/>
-				<Card className="disconnect-site__card"> </Card>
-				<SkipSurvey />
-			</Main>
+			<div>
+				<span className="disconnect-site__back-button">
+					<ReturnPreviousPage onBackClick={ this.handleClick } { ...this.props } />
+				</span>
+				<Main className="disconnect-site__site-settings">
+					<DocumentHead title={ translate( 'Site Settings' ) } />
+					<FormattedHeader
+						headerText={ translate( 'Disconnect Site' ) }
+						subHeaderText={ translate(
+							'Tell us why you want to disconnect your site from WordPress.com.'
+						) }
+					/>
+					<Card className="disconnect-site__card"> </Card>
+					<SkipSurvey />
+				</Main>
+			</div>
 		);
 	}
 }
