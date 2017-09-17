@@ -113,8 +113,6 @@ const PostsMain = React.createClass( {
 			'is-single-site': this.props.siteId
 		} );
 		const query = {
-			//page: this.state.page,
-			//number: 20, // all-sites mode, i.e the /me/posts endpoint, only supports up to 20 results at a time
 			author,
 			category,
 			search,
