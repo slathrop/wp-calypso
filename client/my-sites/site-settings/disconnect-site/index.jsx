@@ -14,7 +14,7 @@ import DocumentHead from 'components/data/document-head';
 import FormattedHeader from 'components/formatted-header';
 import { getSelectedSite } from 'state/ui/selectors';
 import Main from 'components/main';
-import Placeholder from 'my-sites/site-settings/placeholder';
+import Placeholder from 'my-sites/site-settings/placeholder-disconnect';
 import redirectNonJetpack from 'my-sites/site-settings/redirect-non-jetpack';
 import SkipSurvey from './skip-survey';
 
